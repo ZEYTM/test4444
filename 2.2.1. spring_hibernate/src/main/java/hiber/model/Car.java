@@ -1,9 +1,13 @@
 package hiber.model;
 
+import org.springframework.stereotype.Component;
+
 import javax.persistence.*;
+import java.util.Objects;
 
 @Entity
 @Table
+@Component
 public class Car {
 
     @Id
@@ -63,5 +67,18 @@ public class Car {
 
     public void setSeries(String series) {
         this.series = series;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) return true;
+        if (o == null || getClass() != o.getClass()) return false;
+        Car car = (Car) o;
+        return id == car.id && Objects.equals(model, car.model) && Objects.equals(series, car.series) && Objects.equals(ownerCar, car.ownerCar);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(id, model, series, ownerCar);
     }
 }
