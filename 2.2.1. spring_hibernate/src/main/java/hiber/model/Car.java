@@ -7,12 +7,10 @@ import java.util.Objects;
 
 @Entity
 @Table
-@Component
 public class Car {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
-    @Column
     private int id;
     @Column
     private String model;
